@@ -5,9 +5,9 @@ class CreateProfiles < ActiveRecord::Migration[6.0]
       t.string :last_name
       t.string :aka_name
       t.string :gender
-      t.text :description
       t.string :cellphone
       t.date :birthday
+      t.text :description
 
       t.timestamps
     end
