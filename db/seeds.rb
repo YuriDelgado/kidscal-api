@@ -7,12 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 5.times do
-  user = User.new()
-  fname = Faker::Movies::StarWars.character.split(" ")
-  user.profile.create({
+  fak = Faker::Movies::StarWars
+  email = "#{fak.call_squadron}.#{fak.call_number}@#{fak.planet}.net"
+  user = User.new({email: email, password: "starwars"})
+  user.save
+  fname = fak.character.split(" ")
+  Profile.new({
     name: fname.first,
     last_name: fname.last,
-    aka_name: Faker::Movies::StarWars.call_sign,
-    gender: ['male', 'female'].sample
-    })
+    aka_name: fak.call_sign,
+    gender: ['male', 'female'].sample,
+    cellphone: Faker::PhoneNumber.phone_number,
+    birthday: Faker::Date.birthday(min_age: 18, max_age: 65),
+    description: fak.wookiee_sentence,
+    user: user
+  }).save
 end
