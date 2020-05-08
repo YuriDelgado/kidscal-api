@@ -48,5 +48,5 @@ test:
 production:
   <<: *default
   database: kidscal_api_production
-  username: kidscal_api
+  username: <%= ENV['KIDSCAL_API_DATABASE_USERNAME'] %>
   password: <%= ENV['KIDSCAL_API_DATABASE_PASSWORD'] %>
