@@ -8,8 +8,7 @@
 
 5.times do
   fak = Faker::Movies::StarWars
-  email = "#{fak.call_squadron}.#{fak.call_number}@#{fak.planet}.net"
-  user = User.new({email: email, password: "starwars"})
+  user = User.new({email: Faker::Internet.email, password: "starwars"})
   user.save
   fname = fak.character.split(" ")
   Profile.new({
