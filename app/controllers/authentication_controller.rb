@@ -2,7 +2,7 @@ class AuthenticationController < ApplicationController
  skip_before_action :authorize_request
 
   def authenticate
-    command = AuthenticateUser.call(user_params)
+    command = AuthenticateUser.call(user_params[:email], user_params[:password])
 
     if command.success?
       render json: { auth_token: command.result }
